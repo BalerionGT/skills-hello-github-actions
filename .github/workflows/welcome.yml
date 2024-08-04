@@ -1,6 +1,29 @@
 name: Post welcome comment
+
 on:
   pull_request:
     types: [opened]
+
 permissions:
   pull-requests: write
+
+jobs:
+  post_welcome_comment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Post welcome comment
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const commentBody = 'Welcome to the repository! Thank you for your pull request. We will review it soon.';
+
+            await github.issues.createComment({
+              owner,
+              repo,
+              issue_number,
+              body: commentBody,
+            });
