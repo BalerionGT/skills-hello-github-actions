@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: AWS  # Specify the environment
     env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true  # Force actions to use Node.js 20
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE16: true  # Force actions to use Node.js 20
 
     steps:
     - name: Checkout code
